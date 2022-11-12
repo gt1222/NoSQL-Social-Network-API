@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 // reaction is a subdoc in Thought model
 const reactionSchema = require('./Reaction');
+const dayjs = require('dayjs');
 
 //Schema to create Thought model
 const thoughtSchema = new Schema(
@@ -15,7 +16,7 @@ const thoughtSchema = new Schema(
             type: Date,
             default: Date.now,
             //getter method to format timestamp query, lol need to figure out how to format date
-            // get: (timestamp) => dateFormat(timestamp)
+            get: (timestamp) => dayjs(timestamp).format()
         },
         username: {
             type: String,
@@ -28,6 +29,7 @@ const thoughtSchema = new Schema(
             getters: true,
             virtuals: true,
         },
+        id: false,
     }
 );
 

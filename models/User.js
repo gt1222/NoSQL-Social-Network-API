@@ -13,9 +13,8 @@ const userSchema = new Schema(
             required: true,
             unique: true,
              //Must match a valid email address (look into Mongoose's matching validation)
-             // is it supposed to be regex so like
-             // match: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ 
-
+             // is it supposed to be regex so like /.+\@.+\..+/
+            match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, 'Please fill a valid email address']
         },
         thoughts: [
             {

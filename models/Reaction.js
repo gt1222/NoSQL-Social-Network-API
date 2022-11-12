@@ -1,5 +1,6 @@
 //schema only used as subdocument schema in Thought model
 const { Schema, Types } = require('mongoose');
+const dayjs = require('dayjs');
 
 const reactionSchema = new Schema(
     {
@@ -21,7 +22,7 @@ const reactionSchema = new Schema(
             // default value to current timestamp
             default: Date.now,
             //getter method to format timestamp query, lol need to figure out how to format date
-            // get: (timestamp) => dateFormat(timestamp)
+            get: (timestamp) => dayjs(timestamp).format()
 
         }
     },
