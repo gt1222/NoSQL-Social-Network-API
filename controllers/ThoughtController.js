@@ -32,7 +32,7 @@ module.exports = {
           .then((user) =>
             !user
               ? res.status(404).json({ messsage: 'No user with this ID' })
-              : res.json('Created the Thought 🎉')
+              : res.json(user)
           )
           .catch((err) => {
             console.log(err);
@@ -83,8 +83,8 @@ module.exports = {
     // POST to create reaction stored in single thought's reactions array
     createReaction(req, res) {
         Thought.findOneAndUpdate(
-            { _id: req.params.thoughtID },
-            { $addToSet: { reactions: req.body } },
+            { _id: req.params.thoughtId },
+            { $addToSet: { reactions: req.params.body } },
             { runValidators: true, new: true }
         )
         .then((thought) =>
@@ -102,7 +102,7 @@ module.exports = {
     deleteReaction(req, res) {
         Thought.findOneAndUpdate (
             { _id: req.params.thoughtId },
-            { $pull: { reactions: { reactionId: req.params.reactionId } } },
+            { $pull: { reactions: { reationId: req.params.reactionId } }},
             { runValidators: true, new: true }
         )
         .then((thought) =>
