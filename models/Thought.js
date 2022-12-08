@@ -24,12 +24,11 @@ const thoughtSchema = new Schema(
         },
         reactions: [reactionSchema],
     },
-    { // do i need id: false????
+    {
         toJSON: {
             getters: true,
             virtuals: true,
         },
-        id: false,
     }
 );
 
